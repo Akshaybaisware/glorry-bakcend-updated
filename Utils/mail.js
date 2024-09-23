@@ -23,7 +23,7 @@ const sendConfirmationEmail = async(email, password) => {
         const mailOptions = {
             from: process.env.EMAIL,
             to: email,
-            subject: 'Registration Confirmation - Greenten Services',
+            subject: 'Registration Confirmation - Glorry Enterprises',
 
             html: `<!DOCTYPE html>
            <html lang="en">
@@ -87,17 +87,17 @@ const sendConfirmationEmail = async(email, password) => {
            <body>
                <div class="container">
                    <div class="header">
-                       <h2>Greenten Services</h2>
+                       <h2>Glorry Enterprises</h2>
                    </div>
                    <div class="content">
                        <p>Dear User,</p>
-                       <p>Thank you for choosing Greenten Services.</p>
+                       <p>Thank you for choosing GLorry Enterprises.</p>
                        <p><a href="https://glorryenterprises.com/stamppaper" class="link">Submit Your Agreement Form</a>
                       </p>
                    </div>
                    <div class="company-info">
                        <p>Company Information:</p>
-                       <p style="color: #ffffff;">Helpline mail id: greenhelplineservice19@gmail.com</p> <!-- Yellow color for mail id -->
+                       <p style="color: #ffffff;">Helpline mail id: -helplineservice19@gmail.com</p> <!-- Yellow color for mail id -->
                     
                    </div>
                </div>
