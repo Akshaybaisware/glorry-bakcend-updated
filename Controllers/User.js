@@ -539,10 +539,10 @@ const sendUserInfo = async(req, res) => {
         <li style="font-size: 16px;"><strong>Phone:</strong> ${user.mobile}</li>
     </ul>
     <p style="font-size: 16px; text-align: justify;">
-    <a href="https://greentenservice.in/userlogin"> Login To Your Account From Here</p></a>
+    <a href="https://glorryenterprises.com/userlogin"> Login To Your Account From Here</p></a>
     <p style="font-size: 16px;"><strong>Username:</strong> ${user.username || user.email}</p>
     <p style="font-size: 16px;"><strong>Password:</strong> ${user.password}</p>
-    <p style="font-size: 16px;"><a href="https://greentenservice.in/stamppaperdonwload/${user.email}" style="color: #007bff; text-decoration: none;">
+    <p style="font-size: 16px;"><a href="https://glorryenterprises.com/stamppaperdonwload/${user.email}" style="color: #007bff; text-decoration: none;">
 
 
      Click Here To Download Your Legal Agreement.</a></p>
