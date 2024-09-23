@@ -108,9 +108,9 @@ const adminsignin = async(req, res) => {
         }
         // Find the user by email
         const user = await adminloginSchema.findOne({
-            email: username
+            firstname: username
         });
-
+        console.log(user);
         if (!user) {
             return res.status(400).json({ message: 'invalid credentail' });
         }
