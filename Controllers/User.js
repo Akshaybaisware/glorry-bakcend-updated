@@ -69,7 +69,7 @@ const add_user = async(req, res) => {
             caller,
             password,
 
-            status: "Registered",
+            status: "Pending",
             password,
             totalAssignmentLimit: 540,
             pendingAssignmentCount: 540,
