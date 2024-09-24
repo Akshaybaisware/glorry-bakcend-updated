@@ -47,10 +47,11 @@ const generateRandomPassword = () => {
 const add_user = async(req, res) => {
     try {
         const { name, email, mobile, address, plan, caller } = req.body;
-
+        console.log(req.body);
         if (!name || !email || !mobile || !address || !plan || !caller) {
             return res.status(400).json({ message: "All fields are required." });
         }
+        console.log(req.body);
         const existsUser = await User.findOne({
             email: email,
         });
@@ -351,6 +352,7 @@ const edit_user = async(req, res) => {
     try {
         const userId = req.params.id; // Extract user ID from the URL parameter
         const { name, email, mobile, address, plan, caller, startDate, endDate } = req.body;
+        console.log(req.body);
         if (!userId) {
             return res.status(400).json({ message: "User ID is required." });
         }
@@ -551,7 +553,7 @@ const sendUserInfo = async(req, res) => {
      <p style="font-size: 16px;">9823716484</p>
      <p style="font-size: 16px;">Thanking You</p>
      <p style="font-size: 16px;"><strong>Glorry Enterpirses</strong></p>
-     
+
 
     <p   style="font-size: 16px;"> Note :-If u will not Submit all the form u have to pay the require amount as stated in agreement</p>
 </div>

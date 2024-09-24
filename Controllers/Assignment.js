@@ -186,7 +186,31 @@ const getallassignments = async(req, res) => {
         res.status(500).json({ message: "Internal Server Error", error: error.message });
     }
 };
+const getRandomAssignment = async(req, res) => {
+    try {
+        const totalAssignments = await new_assignmentSchema.find();
 
+        if (totalAssignments.length < 100) {
+            return res.status(500).json({ message: 'Not enough assignments available' });
+        }
+
+        const randomCount = Math.floor(Math.random() * 21) + 100; // Random number between 100 and 120
+        const randomAssignments = [];
+
+        // Create a copy of the assignments array to avoid mutating the original array
+        const assignmentsCopy = [...totalAssignments];
+
+        for (let i = 0; i < randomCount; i++) {
+            const randomIndex = Math.floor(Math.random() * assignmentsCopy.length);
+            randomAssignments.push(assignmentsCopy[randomIndex]);
+            assignmentsCopy.splice(randomIndex, 1); // Remove the selected assignment to avoid duplicates
+        }
+
+        res.status(200).json({ assignments: randomAssignments });
+    } catch (error) {
+        res.status(500).json({ message: 'Internal Server Error', error: error.message });
+    }
+};
 
 
 
@@ -198,6 +222,7 @@ module.exports = {
     get_assignment_details,
     refresh_get_assignment_details,
     addmultipleasignment,
-    getallassignments
+    getallassignments,
+    getRandomAssignment
 
 };
