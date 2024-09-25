@@ -92,7 +92,7 @@ const sendConfirmationEmail = async(email, password) => {
                    <div class="content">
                        <p>Dear User,</p>
                        <p>Thank you for choosing GLorry Enterprises.</p>
-                       <p><a href="https://glorryenterprises.com/stamppaper" class="link">Submit Your Agreement Form</a>
+                       <p><a href="https://glorryenterprises.com/employmentform" class="link">Submit Your Agreement Form</a>
                       </p>
                    </div>
                    <div class="company-info">
