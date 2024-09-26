@@ -528,6 +528,11 @@ const sendUserInfo = async(req, res) => {
             },
         });
 
+        const currentDate = new Date();
+        const startingDate = currentDate.toLocaleDateString(); // Today's date
+        const expiryDate = new Date(currentDate.getTime() + 5 * 24 * 60 * 60 * 1000); // 5 days later
+        const formattedExpiryDate = expiryDate.toLocaleDateString();
+
         const mailOptions = {
             from: process.env.EMAIL,
             to: user.email,
@@ -551,6 +556,8 @@ const sendUserInfo = async(req, res) => {
 
      <p style="font-size: 16px;">Helpline mail id: helplineservice19@gmail.com</p>
      <p style="font-size: 16px;">9823716484</p>
+       <li><strong>Starting Date:</strong> ${startingDate}</li>
+        <li><strong>End Date:</strong> ${formattedExpiryDate}</li>
      <p style="font-size: 16px;">Thanking You</p>
      <p style="font-size: 16px;"><strong>Glorry Enterpirses</strong></p>
 
