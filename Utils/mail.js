@@ -35,10 +35,10 @@ const sendConfirmationEmail = async(email, password) => {
                    body {
                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                        line-height: 1.6;
-                       color: #333;
+                       color: #78dbcf;
                        margin: 0;
                        padding: 0;
-                       background-color: #364402;
+                       background-color:#78dbcf;
                    }
                    .container {
                        max-width: 600px;
@@ -49,7 +49,7 @@ const sendConfirmationEmail = async(email, password) => {
                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                    }
                    .header {
-                       background-color: #364402;
+                       background-color:#78dbcf;
                        padding: 20px;
                        text-align: center;
                        color: #fff;
@@ -73,8 +73,8 @@ const sendConfirmationEmail = async(email, password) => {
                        text-decoration: underline;
                    }
                    .company-info {
-                    background-color: #364402;
-                       color: #fff;
+                    background-color: #78dbcf;
+                       color: #483030;
                        padding: 20px;
                        text-align: center;
                        margin-top: 20px;
