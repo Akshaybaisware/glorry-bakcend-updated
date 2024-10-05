@@ -1003,12 +1003,12 @@ const get_report_by_id = async(req, res) => {
         const user = await User.findOne({ _id: id });
 
         if (user) {
-            if (user.submittedAssignmentCount === 540) {
+            if (user.submittedAssignmentCount === 539) {
                 // Check if incorrectAssignment and correctAssignment are already set
                 if (!user.incorrectAssignmentCount || !user.correctAssignmentCount) {
                     console.log(generateRandomNumber(), "####");
                     const correct = user.correctAssignmentCount = generateRandomNumber();
-                    user.incorrectAssignmentCount = 540 - correct;
+                    user.incorrectAssignmentCount = 539 - correct;
                     user.save();
                     res.status(200).json({ message: 'User Report...', user });
                 } else {
