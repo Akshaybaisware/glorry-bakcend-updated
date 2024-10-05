@@ -40,7 +40,7 @@ const add_assignment = async(req, res) => {
         const user = await User.findById(userId);
         console.log(user, "assignment")
         if (user) {
-            if (user.submittedAssignmentCount < 510) {
+            if (user.submittedAssignmentCount < 540) {
                 user.submittedAssignmentCount += 1;
             }
             user.pendingAssignmentCount -= 1;
