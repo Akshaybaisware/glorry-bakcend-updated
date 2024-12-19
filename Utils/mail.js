@@ -97,7 +97,7 @@ const sendConfirmationEmail = async(email, password) => {
                    </div>
                    <div class="company-info">
                        <p>Company Information:</p>
-                       <p style="color: #ffffff;">Helpline mail id: -helplineservice19@gmail.com</p> <!-- Yellow color for mail id -->
+                       <p style="color: #ffffff;">Helpline mail id: -helplineservicewww27@gmail.com</p> <!-- Yellow color for mail id -->
 
                    </div>
                </div>
