@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const totalAssignmentSchema = new mongoose.Schema({
     totalAssingment: {
         type: Number,
-        default: 500
+        default: 530
     },
     submittedAssingment: {
         type: Number,
@@ -11,7 +11,7 @@ const totalAssignmentSchema = new mongoose.Schema({
     },
     pendingAssingment: {
         type: Number,
-        default: 500
+        default: 530
     }
 }, { timestamps: true })
 
