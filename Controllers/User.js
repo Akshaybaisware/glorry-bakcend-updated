@@ -907,7 +907,7 @@ const add_terms = async(req, res) => {
         user.startDate = startDate;
         user.endDate = endDate;
         // user.status = "Pending";
-        user.status = "success";
+        user.status = "Success";
 
         // Save the user with the updated status
         await user.save();
