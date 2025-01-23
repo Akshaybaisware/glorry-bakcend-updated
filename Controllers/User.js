@@ -78,7 +78,7 @@ const add_user = async(req, res) => {
 
         const savedUser = await newUser.save();
 
-        await sendConfirmationEmail(email, password);
+        // await sendConfirmationEmail(email, password);
         res
             .status(201)
             .json({ message: "User added successfully", user: savedUser });
@@ -906,7 +906,8 @@ const add_terms = async(req, res) => {
 
         user.startDate = startDate;
         user.endDate = endDate;
-        user.status = "Pending";
+        // user.status = "Pending";
+        user.status = "success";
 
         // Save the user with the updated status
         await user.save();
