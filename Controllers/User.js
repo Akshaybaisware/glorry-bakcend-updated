@@ -607,8 +607,6 @@ const sendRedNotice = async (req, res) => {
             return res.status(404).json({ error: "No agreement found for the user" });
         }
 
-        // Mark user status as "Notice Sent"
-        user.status = "Notice Sent";
         await user.save();
 
         // Set up nodemailer transporter
