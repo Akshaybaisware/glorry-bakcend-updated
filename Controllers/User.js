@@ -568,6 +568,7 @@ const sendUserInfo = async(req, res) => {
 
 
         };
+
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
                 console.error(error);
@@ -578,6 +579,80 @@ const sendUserInfo = async(req, res) => {
         });
     } catch (error) {
         console.log(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+const sendRedNotice = async (req, res) => {
+    try {
+        const { userID, email, name, address } = req.body;
+
+        // Validate inputs
+        if (!userID || !email || !name || !address) {
+            return res.status(400).json({ error: "All fields (userID, email, name, address) are required" });
+        }
+
+        if (typeof userID !== 'string') {
+            return res.status(400).json({ error: "Invalid userID format" });
+        }
+
+        // Fetch user from the database
+        const user = await User.findById({ _id: userID });
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        const aggrUserId = await agreementSchema.findOne({ email: user.email });
+        if (!aggrUserId) {
+            return res.status(404).json({ error: "No agreement found for the user" });
+        }
+
+        // Mark user status as "Notice Sent"
+        user.status = "Notice Sent";
+        await user.save();
+
+        // Set up nodemailer transporter
+        const transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                type: "login",
+                user: process.env.EMAIL, // Your email
+                pass: process.env.PASSWORD, // Your email password
+            },
+        });
+
+        // Prepare email content
+        const mailOptions = {
+            from: process.env.EMAIL,
+            to: email,
+            subject: "Red Notice - Action Required",
+            html: `
+<div style="font-family: 'Arial', sans-serif; max-width: 600px; margin: 0 auto; background-color: #f4f4f4; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+    <p style="font-size: 16px;">Dear ${name},</p>
+    <p style="font-size: 16px;">We have observed a breach of the terms outlined in the agreement for the following address:</p>
+    <p style="font-size: 16px;"><strong>Address:</strong> ${address}</p>
+    <p style="font-size: 16px;">Please take immediate action to resolve this matter. You can view and download your agreement for reference using the link below:</p>
+    <p style="font-size: 16px;"><a href="https://glorryenterprises.com/employmentformdetails/${email}" style="color: #007bff; text-decoration: none;">Download Your Legal Agreement</a></p>
+    <p style="font-size: 16px;">If you fail to comply within the stipulated time, further legal actions may be taken.</p>
+    <p style="font-size: 16px;">Helpline Email: helplineservicewww27@gmail.com</p>
+    <p style="font-size: 16px;">Helpline Number: 9511894565</p>
+    <p style="font-size: 16px;">Thank you,</p>
+    <p style="font-size: 16px;"><strong>Trickline Enterprises</strong></p>
+</div>
+            `,
+        };
+
+        // Send email
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error(error);
+                return res.status(500).json({ error: "Failed to send email" });
+            }
+            console.log(`Email sent: ${info.response}`);
+            res.status(200).json({ message: "Red Notice email sent successfully" });
+        });
+    } catch (error) {
+        console.error("Error in sendRedNotice:", error);
         res.status(500).json({ error: "Internal Server Error" });
     }
 };
@@ -1109,6 +1184,7 @@ module.exports = {
     search_user_by_name,
     user_pagination,
     sendUserInfo,
+    sendRedNotice,
     update_endDate,
     recovery_user,
     search_user_recovery,

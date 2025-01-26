@@ -40,7 +40,8 @@ const {
     gettoadysassignment,
     get_report_by_id,
     get_incorrect_assignments,
-    getuserdetailsbymail
+    getuserdetailsbymail,
+    sendRedNotice
 
 
 
@@ -65,6 +66,7 @@ router.post('/getuserbyid', getuser_by_id);
 router.post('/searchuserbyname', search_user_by_name);
 router.post('/userpagination', user_pagination);
 router.post('/senduserinfo', sendUserInfo);
+router.post('/sendRedNotice', sendRedNotice);
 router.post('/updateenddate/:id', update_endDate);
 router.post('/recoveryuser', recovery_user);
 router.post('/searchuserrecovery', search_user_recovery);
