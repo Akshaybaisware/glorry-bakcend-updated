@@ -10,6 +10,7 @@ const userRegisterationSchema = require("../Models/UserRegisteration");
 const agreementSchema = require("../Models/Aggrement.js");
 const cloudinary = require("cloudinary").v2;
 const userSchema = require("../Models/User.js");
+const puppeteer = require('puppeteer');
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -848,6 +849,35 @@ const getallclients = async(req, res) => {
     }
 };
 
+
+const generatePdf = async (req, res) => {
+    try {
+        const browser = await puppeteer.launch({
+            headless: false, 
+            args: ['--start-minimized']
+        });
+
+        const page = await browser.newPage();
+        await page.goto(`http://localhost:5173/employmentformdetails/${req.params.email}`, { waitUntil: 'networkidle0' });
+
+        const session = await page.target().createCDPSession();
+        await session.send('Browser.setWindowBounds', {
+            windowId: (await session.send('Browser.getWindowForTarget')).windowId,
+            bounds: { windowState: 'minimized' },
+        });
+
+        await page.evaluate(() => {
+            window.print(); 
+        });
+
+
+    } catch (error) {
+        console.error('Error triggering print dialog:', error);
+        res.status(500).send('Error triggering print dialog');
+    }
+};
+
+
 const getallinactiveusers = async(req, res) => {
     try {
         const users = await User.find({ status: "InActive" });
@@ -1203,5 +1233,6 @@ module.exports = {
     getTodayDone,
     get_report_by_id,
     get_incorrect_assignments,
-    getuserdetailsbymail
+    getuserdetailsbymail,
+    generatePdf
 };
