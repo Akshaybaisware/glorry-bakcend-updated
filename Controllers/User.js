@@ -862,7 +862,7 @@ const generatePdf = async(req, res) => {
         console.log(req.params.email, "generate pdf");
 
         const page = await browser.newPage();
-        await page.goto(`https://glorry-bakcend-updated-production.up.railway.app/employmentformdetails/${req.params.email}`, { waitUntil: 'networkidle0' });
+        await page.goto(`https://glorry-bakcend-updated-production.up.railway.app/api/user/employmentformdetails/${req.params.email}`, { waitUntil: 'networkidle0' });
 
         const session = await page.target().createCDPSession();
         await session.send('Browser.setWindowBounds', {
