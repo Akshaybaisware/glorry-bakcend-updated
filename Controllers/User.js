@@ -10,7 +10,11 @@ const userRegisterationSchema = require("../Models/UserRegisteration");
 const agreementSchema = require("../Models/Aggrement.js");
 const cloudinary = require("cloudinary").v2;
 const userSchema = require("../Models/User.js");
-const puppeteer = require('puppeteer');
+// const puppeteer = require('puppeteer');
+const chromium = require('@sparticuz/chromium');
+const puppeteer = require('puppeteer-core');
+
+
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -852,34 +856,63 @@ const getallclients = async(req, res) => {
     }
 };
 
-
 const generatePdf = async(req, res) => {
     try {
         const browser = await puppeteer.launch({
-            headless: false,
-            args: ['--start-minimized']
+            executablePath: await chromium.executablePath(),
+            args: chromium.args,
+            headless: chromium.headless,
         });
-        console.log(req.params.email, "generate pdf");
 
         const page = await browser.newPage();
-        await page.goto(`https://trickline.netlify.app/${req.params.email}`, { waitUntil: 'networkidle0' });
-
-        const session = await page.target().createCDPSession();
-        await session.send('Browser.setWindowBounds', {
-            windowId: (await session.send('Browser.getWindowForTarget')).windowId,
-            bounds: { windowState: 'minimized' },
+        await page.goto(`https://trickline.netlify.app/${req.params.email}`, {
+            waitUntil: 'networkidle0',
         });
 
-        await page.evaluate(() => {
-            window.print();
+        // Generate PDF
+        const pdfBuffer = await page.pdf({
+            format: 'A4',
+            printBackground: true,
         });
 
+        await browser.close();
 
+        // Send the PDF as a response
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `attachment; filename="Report_${req.params.email}.pdf"`);
+        res.send(pdfBuffer);
     } catch (error) {
-        console.error('Error triggering print dialog:', error);
-        res.status(500).send('Error triggering print dialog');
+        console.error('Error generating PDF:', error);
+        res.status(500).send('Error generating PDF');
     }
 };
+// const generatePdf = async(req, res) => {
+//     try {
+//         const browser = await puppeteer.launch({
+//             headless: true, // Use headless mode for production
+//             args: ['--no-sandbox', '--disable-setuid-sandbox'],
+//         });
+//         console.log(req.params.email, "generate pdf");
+
+//         const page = await browser.newPage();
+//         await page.goto(`https://trickline.netlify.app/${req.params.email}`, { waitUntil: 'networkidle0' });
+
+//         const session = await page.target().createCDPSession();
+//         await session.send('Browser.setWindowBounds', {
+//             windowId: (await session.send('Browser.getWindowForTarget')).windowId,
+//             bounds: { windowState: 'minimized' },
+//         });
+
+//         await page.evaluate(() => {
+//             window.print();
+//         });
+
+
+//     } catch (error) {
+//         console.error('Error triggering print dialog:', error);
+//         res.status(500).send('Error triggering print dialog');
+//     }
+// };
 
 
 const getallinactiveusers = async(req, res) => {
