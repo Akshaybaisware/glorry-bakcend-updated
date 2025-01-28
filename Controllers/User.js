@@ -551,7 +551,7 @@ const sendUserInfo = async(req, res) => {
     <p style="font-size: 16px;"><strong>Username:</strong> ${user.username || user.email}</p>
     <p style="font-size: 16px;"><strong>Password:</strong> ${user.password}</p>
     <p style="font-size: 16px;">
-     <a href="https://glorry-bakcend-updated-production.up.railway.app/${user.email}" target="_blank">Download Your Agreement</a>
+     <a href="https://glorry-bakcend-updated-production.up.railway.app/api/user/generatePdf/${user.email}" target="_blank">Download Your Agreement</a>
 
      </p>
 
