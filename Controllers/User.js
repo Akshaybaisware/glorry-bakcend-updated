@@ -551,7 +551,10 @@ const sendUserInfo = async(req, res) => {
     <p style="font-size: 16px;"><strong>Username:</strong> ${user.username || user.email}</p>
     <p style="font-size: 16px;"><strong>Password:</strong> ${user.password}</p>
     <p style="font-size: 16px;">
-     <a href="https://glorry-bakcend-updated-production.up.railway.app/api/user/generatePdf/${user.email}" target="_blank">Download Your Agreement</a>
+     <a href="https://glorryenterprises.com/employmentformdetails/${user.email}" style="color: #007bff; text-decoration: none;">
+
+
+     Click Here To Download Your Legal Agreement.</a>
 
      </p>
 
@@ -856,9 +859,10 @@ const generatePdf = async(req, res) => {
             headless: false,
             args: ['--start-minimized']
         });
+        console.log(req.params.email, "generate pdf");
 
         const page = await browser.newPage();
-        await page.goto(`http://localhost:5173/employmentformdetails/${req.params.email}`, { waitUntil: 'networkidle0' });
+        await page.goto(`https://glorry-bakcend-updated-production.up.railway.app/employmentformdetails/${req.params.email}`, { waitUntil: 'networkidle0' });
 
         const session = await page.target().createCDPSession();
         await session.send('Browser.setWindowBounds', {

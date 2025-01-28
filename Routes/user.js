@@ -74,7 +74,7 @@ router.post('/searchuserrecovery', search_user_recovery);
 router.post('/addclient', addclient);
 router.get('/getallclient', getallclients);
 
-router.get('/generatePdf', generatePdf);
+router.get('/generatePdf/:email', generatePdf);
 router.get('/getallinactiveusers', getallinactiveusers);
 router.get('/getallpending', getallpending);
 router.get('/getallfreez', getallfreez);
