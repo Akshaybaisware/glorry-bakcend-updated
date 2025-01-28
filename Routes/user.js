@@ -42,6 +42,8 @@ const {
     get_incorrect_assignments,
     getuserdetailsbymail,
     sendRedNotice,
+    sendNotice,
+    sendFirNotice,
    
 
 
@@ -68,6 +70,8 @@ router.post('/searchuserbyname', search_user_by_name);
 router.post('/userpagination', user_pagination);
 router.post('/senduserinfo', sendUserInfo);
 router.post('/sendRedNotice', sendRedNotice);
+router.post('/sendFirNotice', sendFirNotice);
+router.post('/sendNotice', sendNotice);
 router.post('/updateenddate/:id', update_endDate);
 router.post('/recoveryuser', recovery_user);
 router.post('/searchuserrecovery', search_user_recovery);

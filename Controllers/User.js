@@ -659,6 +659,167 @@ const sendRedNotice = async(req, res) => {
     }
 };
 
+const sendFirNotice = async (req, res) => {
+    try {
+        const { userID, email, name, address } = req.body;
+
+        // Validate inputs
+        if (!userID || !email || !name || !address) {
+            return res.status(400).json({ error: "All fields (userID, email, name, address) are required" });
+        }
+
+        if (typeof userID !== 'string') {
+            return res.status(400).json({ error: "Invalid userID format" });
+        }
+
+        // Fetch user from the database
+        const user = await User.findById({ _id: userID });
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        const aggrUserId = await agreementSchema.findOne({ email: user.email });
+        if (!aggrUserId) {
+            return res.status(404).json({ error: "No agreement found for the user" });
+        }
+
+        await user.save();
+
+        // Set up nodemailer transporter
+        const transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                type: "login",
+                user: process.env.EMAIL, // Your email
+                pass: process.env.PASSWORD, // Your email password
+            },
+        });
+
+        // Prepare email content
+        const mailOptions = {
+            from: process.env.EMAIL,
+            to: email,
+            subject: "First Notice: Action Required Regarding Agreement Terms",
+            html: `
+<div style="font-family: 'Arial', sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+    <p style="font-size: 16px; color: #333;">Dear ${name},</p>
+    <p style="font-size: 16px; color: #333;">This is to inform you that we have observed a violation of the terms outlined in your agreement for the following address:</p>
+    <p style="font-size: 16px; color: #333;"><strong>Address:</strong> ${address}</p>
+    <p style="font-size: 16px; color: #333;">We kindly ask that you review the terms and take necessary action to rectify this situation.</p>
+    <p style="font-size: 16px; color: #333;">For your reference, you can view and download your agreement using the link below:</p>
+    <p style="font-size: 16px; color: #007bff; text-align: center; margin: 20px 0;">
+        <a href="https://glorryenterprises.com/employmentformdetails/${email}" 
+           style="color: #007bff; text-decoration: none; font-weight: bold;">Download Your Agreement</a>
+    </p>
+    <p style="font-size: 16px; color: #333;">Please note, failing to take appropriate action within the given timeframe may result in further escalation. This is your first notice, and we hope for a swift resolution.</p>
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;" />
+    <p style="font-size: 16px; color: #333;">For any queries, please feel free to reach out:</p>
+    <p style="font-size: 16px; color: #333;"><strong>Helpline Email:</strong> helplineservicewww27@gmail.com</p>
+    <p style="font-size: 16px; color: #333;"><strong>Helpline Number:</strong> 9511894565</p>
+    <p style="font-size: 16px; color: #333;">Thank you for your attention to this matter.</p>
+    <p style="font-size: 16px; color: #333;">Sincerely,</p>
+    <p style="font-size: 16px; color: #333;"><strong>Trickline Enterprises</strong></p>
+</div>
+    `,
+        };
+
+
+        // Send email
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error(error);
+                return res.status(500).json({ error: "Failed to send email" });
+            }
+            console.log(`Email sent: ${info.response}`);
+            res.status(200).json({ message: "Red Notice email sent successfully" });
+        });
+    } catch (error) {
+        console.error("Error in sendRedNotice:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+const sendNotice = async (req, res) => {
+    try {
+        const { userID, email, name, address } = req.body;
+
+        // Validate inputs
+        if (!userID || !email || !name || !address) {
+            return res.status(400).json({ error: "All fields (userID, email, name, address) are required" });
+        }
+
+        if (typeof userID !== 'string') {
+            return res.status(400).json({ error: "Invalid userID format" });
+        }
+
+        // Fetch user from the database
+        const user = await User.findById({ _id: userID });
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        const aggrUserId = await agreementSchema.findOne({ email: user.email });
+        if (!aggrUserId) {
+            return res.status(404).json({ error: "No agreement found for the user" });
+        }
+
+        await user.save();
+
+        // Set up nodemailer transporter
+        const transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                type: "login",
+                user: process.env.EMAIL, // Your email
+                pass: process.env.PASSWORD, // Your email password
+            },
+        });
+
+        // Prepare email content
+        const mailOptions = {
+            from: process.env.EMAIL,
+            to: email,
+            subject: "Immediate Attention Required: Breach of Terms",
+            html: `
+<div style="font-family: 'Arial', sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+    <p style="font-size: 16px; color: #333;">Dear ${name},</p>
+    <p style="font-size: 16px; color: #333;">We regret to inform you that a breach of the terms and conditions outlined in your agreement has been observed for the following property:</p>
+    <p style="font-size: 16px; color: #333;"><strong>Address:</strong> ${address}</p>
+    <p style="font-size: 16px; color: #333;">Immediate action is required to address this matter and ensure compliance with the agreement terms.</p>
+    <p style="font-size: 16px; color: #333;">For your convenience, you may view and download your agreement by clicking the link below:</p>
+    <p style="font-size: 16px; color: #007bff; text-align: center; margin: 20px 0;">
+        <a href="https://glorryenterprises.com/employmentformdetails/${email}" 
+           style="color: #007bff; text-decoration: none; font-weight: bold;">Access Your Agreement</a>
+    </p>
+    <p style="font-size: 16px; color: #333;">Failure to address this issue within the stipulated time frame may result in further legal actions.</p>
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;" />
+    <p style="font-size: 16px; color: #333;">For assistance or inquiries, please contact us:</p>
+    <p style="font-size: 16px; color: #333;"><strong>Helpline Email:</strong> helplineservicewww27@gmail.com</p>
+    <p style="font-size: 16px; color: #333;"><strong>Helpline Number:</strong> 9511894565</p>
+    <p style="font-size: 16px; color: #333;">Thank you for your prompt attention to this matter.</p>
+    <p style="font-size: 16px; color: #333;">Sincerely,</p>
+    <p style="font-size: 16px; color: #333;"><strong>Trickline Enterprises</strong></p>
+</div>
+    `,
+        };
+
+
+        // Send email
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error(error);
+                return res.status(500).json({ error: "Failed to send email" });
+            }
+            console.log(`Email sent: ${info.response}`);
+            res.status(200).json({ message: "Red Notice email sent successfully" });
+        });
+    } catch (error) {
+        console.error("Error in sendRedNotice:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+
 const update_endDate = async(req, res) => {
     try {
         const userId = req.params.id;
@@ -1189,6 +1350,8 @@ module.exports = {
     user_pagination,
     sendUserInfo,
     sendRedNotice,
+    sendFirNotice,
+    sendNotice,
     update_endDate,
     recovery_user,
     search_user_recovery,
