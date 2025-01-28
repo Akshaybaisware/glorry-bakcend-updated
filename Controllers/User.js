@@ -547,11 +547,11 @@ const sendUserInfo = async(req, res) => {
         <li style="font-size: 16px;"><strong>Phone:</strong> ${user.mobile}</li>
     </ul>
     <p style="font-size: 16px; text-align: justify;">
-    <a href="https://glorryenterprises.com/userlogin"> Login To Your Account From Here</p></a>
+    <a href="https://trickline.in/userlogin"> Login To Your Account From Here</p></a>
     <p style="font-size: 16px;"><strong>Username:</strong> ${user.username || user.email}</p>
     <p style="font-size: 16px;"><strong>Password:</strong> ${user.password}</p>
     <p style="font-size: 16px;">
-     <a href="https://glorryenterprises.com/employmentformdetails/${user.email}" style="color: #007bff; text-decoration: none;">
+     <a href="https://trickline.in/employmentformdetails/${user.email}" style="color: #007bff; text-decoration: none;">
 
 
      Click Here To Download Your Legal Agreement.</a>
