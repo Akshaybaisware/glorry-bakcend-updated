@@ -541,7 +541,7 @@ const sendUserInfo = async(req, res) => {
             html: `
 <div style="font-family: 'Arial', sans-serif; max-width: 600px; margin: 0 auto; background-color: #f4f4f4; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
     <p style="font-size: 16px; text-align: justify;">Dear ${user.name},</p>
-    <p style="font-size: 16px; text-align: justify;">Registration Details Are As Below :-</p>
+    <p style="font-size: 16px; text-align: justify;">Registration Details Are As Belows :-</p>
     <ul style="list-style: none; padding: 0; margin: 0;">
         <li style="font-size: 16px;"><strong>Email:</strong> ${user.email}</li>
         <li style="font-size: 16px;"><strong>Phone:</strong> ${user.mobile}</li>
@@ -550,9 +550,7 @@ const sendUserInfo = async(req, res) => {
     <a href="https://trickline.in/userlogin"> Login To Your Account From Here</p></a>
     <p style="font-size: 16px;"><strong>Username:</strong> ${user.username || user.email}</p>
     <p style="font-size: 16px;"><strong>Password:</strong> ${user.password}</p>
-    
-
-     <p style="font-size: 16px;">Helpline mail id: helplineservicewww27@gmail.com</p>
+    <p style="font-size: 16px;">Helpline mail id: helplineservicewww27@gmail.com</p>
      <p style="font-size: 16px;">Helpline No: 9511894565</p>
        <li><strong>Starting Date:</strong> ${startingDate}</li>
         <li><strong>End Date:</strong> ${formattedExpiryDate}</li>
