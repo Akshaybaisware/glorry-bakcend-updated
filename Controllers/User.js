@@ -581,7 +581,7 @@ const sendUserInfo = async(req, res) => {
 
 const sendRedNotice = async(req, res) => {
     try {
-        const { userID, email, name, address } = req.body;
+        const { userID, email, name, address, date, amount } = req.body;
 
         // Validate inputs
         if (!userID || !email || !name || !address) {
@@ -597,6 +597,9 @@ const sendRedNotice = async(req, res) => {
         if (!user) {
             return res.status(404).json({ error: "User not found" });
         }
+
+        user.nocDate = date;
+        user.novcAmount = amount;
 
         const aggrUserId = await agreementSchema.findOne({ email: user.email });
         if (!aggrUserId) {
@@ -627,7 +630,7 @@ const sendRedNotice = async(req, res) => {
     <p style="font-size: 16px;"><strong>Address:</strong> ${address}</p>
     <p style="font-size: 16px;">Please take immediate action to resolve this matter. You can view and download your agreement for reference using the link below:</p>
     <p style="font-size: 16px;">
-  <a href="https://trickline.in/noc/${email}" 
+  <a href="https://trickline.in/noc/${userID}"
     style="color: #007bff; text-decoration: none;">Download Your Legal Agreement</a></p>
     <p style="font-size: 16px;">If you fail to comply within the stipulated time, further legal actions may be taken.</p>
     <p style="font-size: 16px;">Helpline Email: helplineservicewww27@gmail.com</p>
@@ -653,7 +656,7 @@ const sendRedNotice = async(req, res) => {
     }
 };
 
-const sendFirNotice = async (req, res) => {
+const sendFirNotice = async(req, res) => {
     try {
         const { userID, email, name, address } = req.body;
 
@@ -702,7 +705,7 @@ const sendFirNotice = async (req, res) => {
     <p style="font-size: 16px; color: #333;">We kindly ask that you review the terms and take necessary action to rectify this situation.</p>
     <p style="font-size: 16px; color: #333;">For your reference, you can view and download your agreement using the link below:</p>
     <p style="font-size: 16px; color: #007bff; text-align: center; margin: 20px 0;">
-      <a href="https://trickline.in/noc/${email}" 
+      <a href="https://trickline.in/noc/${email}"
            style="color: #007bff; text-decoration: none; font-weight: bold;">Download Your Agreement</a>
     </p>
     <p style="font-size: 16px; color: #333;">Please note, failing to take appropriate action within the given timeframe may result in further escalation. This is your first notice, and we hope for a swift resolution.</p>
@@ -733,7 +736,7 @@ const sendFirNotice = async (req, res) => {
     }
 };
 
-const sendNotice = async (req, res) => {
+const sendNotice = async(req, res) => {
     try {
         const { userID, email, name, address } = req.body;
 
@@ -752,10 +755,14 @@ const sendNotice = async (req, res) => {
             return res.status(404).json({ error: "User not found" });
         }
 
+
+
         const aggrUserId = await agreementSchema.findOne({ email: user.email });
         if (!aggrUserId) {
             return res.status(404).json({ error: "No agreement found for the user" });
         }
+
+
 
         await user.save();
 
@@ -782,7 +789,7 @@ const sendNotice = async (req, res) => {
     <p style="font-size: 16px; color: #333;">Immediate action is required to address this matter and ensure compliance with the agreement terms.</p>
     <p style="font-size: 16px; color: #333;">For your convenience, you may view and download your agreement by clicking the link below:</p>
     <p style="font-size: 16px; color: #007bff; text-align: center; margin: 20px 0;">
-        <a href="https://trickline.in/fir/${email}" 
+        <a href="https://trickline.in/fir/${email}"
            style="color: #007bff; text-decoration: none; font-weight: bold;">Access Your Agreement</a>
     </p>
     <p style="font-size: 16px; color: #333;">Failure to address this issue within the stipulated time frame may result in further legal actions.</p>

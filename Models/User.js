@@ -31,6 +31,8 @@ const userSchema = new mongoose.Schema({
     correctAssignmentCount: { type: Number },
     incorrectAssignmentCount: { type: Number },
     videoNumber: { type: Number, default: 1 },
+    nocDate: { type: Date },
+    novcAmount: { type: Number },
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);
