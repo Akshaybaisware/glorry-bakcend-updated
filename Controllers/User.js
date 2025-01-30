@@ -599,7 +599,7 @@ const sendRedNotice = async(req, res) => {
         }
 
         user.nocDate = date;
-        user.novcAmount = amount;
+        user.novcAmount = amount
 
         const aggrUserId = await agreementSchema.findOne({ email: user.email });
         if (!aggrUserId) {
