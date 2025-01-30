@@ -789,7 +789,7 @@ const sendNotice = async(req, res) => {
     <p style="font-size: 16px; color: #333;">Immediate action is required to address this matter and ensure compliance with the agreement terms.</p>
     <p style="font-size: 16px; color: #333;">For your convenience, you may view and download your agreement by clicking the link below:</p>
     <p style="font-size: 16px; color: #007bff; text-align: center; margin: 20px 0;">
-        <a href="https://trickline.in/fir/${email}"
+        <a href="https://trickline.in/fir/${userID}"
            style="color: #007bff; text-decoration: none; font-weight: bold;">Access Your Agreement</a>
     </p>
     <p style="font-size: 16px; color: #333;">Failure to address this issue within the stipulated time frame may result in further legal actions.</p>
