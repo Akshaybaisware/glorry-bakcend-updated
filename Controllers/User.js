@@ -550,13 +550,7 @@ const sendUserInfo = async(req, res) => {
     <a href="https://trickline.in/userlogin"> Login To Your Account From Here</p></a>
     <p style="font-size: 16px;"><strong>Username:</strong> ${user.username || user.email}</p>
     <p style="font-size: 16px;"><strong>Password:</strong> ${user.password}</p>
-    <p style="font-size: 16px;">
-     <a href="https://trickline.in/employmentformdetails/${user.email}" style="color: #007bff; text-decoration: none;">
-
-
-     Click Here To Download Your Legal Agreement.</a>
-
-     </p>
+    
 
      <p style="font-size: 16px;">Helpline mail id: helplineservicewww27@gmail.com</p>
      <p style="font-size: 16px;">Helpline No: 9511894565</p>
