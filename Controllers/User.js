@@ -631,7 +631,7 @@ const sendRedNotice = async(req, res) => {
     <p style="font-size: 16px;">Please take immediate action to resolve this matter. You can view and download your agreement for reference using the link below:</p>
     <p style="font-size: 16px;">
   <a href="https://trickline.in/noc/${userID}"
-    style="color: #007bff; text-decoration: none;">Download Your Legal Agreement</a></p>
+    style="color: #007bff; text-decoration: none;">Download Your NOTICE</a></p>
     <p style="font-size: 16px;">If you fail to comply within the stipulated time, further legal actions may be taken.</p>
     <p style="font-size: 16px;">Helpline Email: helplineservicewww27@gmail.com</p>
     <p style="font-size: 16px;">Helpline Number: 9511894565</p>
@@ -700,13 +700,13 @@ const sendFirNotice = async(req, res) => {
             html: `
 <div style="font-family: 'Arial', sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
     <p style="font-size: 16px; color: #333;">Dear ${name},</p>
-    <p style="font-size: 16px; color: #333;">This is to inform you that we have observed a violation of the terms outlined in your agreement for the following address:</p>
+    <p style="font-size: 16px; color: #333;">We are please to inform u have solve the mater:</p>
     <p style="font-size: 16px; color: #333;"><strong>Address:</strong> ${address}</p>
     <p style="font-size: 16px; color: #333;">We kindly ask that you review the terms and take necessary action to rectify this situation.</p>
     <p style="font-size: 16px; color: #333;">For your reference, you can view and download your agreement using the link below:</p>
     <p style="font-size: 16px; color: #007bff; text-align: center; margin: 20px 0;">
       <a href="https://trickline.in/nonoc/${userID}"
-           style="color: #007bff; text-decoration: none; font-weight: bold;">Download Your Agreement</a>
+           style="color: #007bff; text-decoration: none; font-weight: bold;">Download Your NOC</a>
     </p>
     <p style="font-size: 16px; color: #333;">Please note, failing to take appropriate action within the given timeframe may result in further escalation. This is your first notice, and we hope for a swift resolution.</p>
     <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;" />
@@ -780,19 +780,19 @@ const sendNotice = async(req, res) => {
         const mailOptions = {
             from: process.env.EMAIL,
             to: email,
-            subject: "Immediate Attention Required: Breach of Terms",
+            subject: "FIr NOTICE",
             html: `
 <div style="font-family: 'Arial', sans-serif; max-width: 600px; margin: 0 auto; background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
     <p style="font-size: 16px; color: #333;">Dear ${name},</p>
-    <p style="font-size: 16px; color: #333;">We regret to inform you that a breach of the terms and conditions outlined in your agreement has been observed for the following property:</p>
+    <p style="font-size: 16px;">We have observed a breach of the terms outlined in the agreement for the following address:</p>
     <p style="font-size: 16px; color: #333;"><strong>Address:</strong> ${address}</p>
-    <p style="font-size: 16px; color: #333;">Immediate action is required to address this matter and ensure compliance with the agreement terms.</p>
+
     <p style="font-size: 16px; color: #333;">For your convenience, you may view and download your agreement by clicking the link below:</p>
     <p style="font-size: 16px; color: #007bff; text-align: center; margin: 20px 0;">
         <a href="https://trickline.in/fir/${userID}"
-           style="color: #007bff; text-decoration: none; font-weight: bold;">Access Your Agreement</a>
+           style="color: #007bff; text-decoration: none; font-weight: bold;">Access Your FIR</a>
     </p>
-    <p style="font-size: 16px; color: #333;">Failure to address this issue within the stipulated time frame may result in further legal actions.</p>
+
     <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;" />
     <p style="font-size: 16px; color: #333;">For assistance or inquiries, please contact us:</p>
     <p style="font-size: 16px; color: #333;"><strong>Helpline Email:</strong> helplineservicewww27@gmail.com</p>
