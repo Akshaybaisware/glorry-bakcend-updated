@@ -94,11 +94,19 @@ const userlogin = async(req, res) => {
         const { email, password } = req.body;
         console.log(email);
 
-        const user = await User.findOne({ email, password });
+        const user = await User.findOne({ email: email });
+        // console.log(user);
+
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
 
+
+
+
+        // if (user.password !== password) {
+        //     return res.status(401).json({ message: "Invalid Password" });
+        // }
         const currentDate = new Date();
         const userEndDate = new Date(user.endDate);
         const isWithin12Hours = new Date(
