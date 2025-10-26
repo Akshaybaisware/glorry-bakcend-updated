@@ -545,7 +545,7 @@ const sendUserInfo = async(req, res) => {
         const mailOptions = {
             from: process.env.EMAIL,
             to: user.email,
-            subject: "Trickline Enterprises Account Activate",
+            subject: " Alfabet service Account Activate",
             html: `
 <div style="font-family: 'Arial', sans-serif; max-width: 600px; margin: 0 auto; background-color: #f4f4f4; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
     <p style="font-size: 16px; text-align: justify;">Dear ${user.name},</p>
@@ -641,10 +641,11 @@ const sendRedNotice = async(req, res) => {
   <a href="https://trickline.in/noc/${userID}"
     style="color: #007bff; text-decoration: none;">Download Your NOTICE</a></p>
     <p style="font-size: 16px;">If you fail to comply within the stipulated time, further legal actions may be taken.</p>
-    <p style="font-size: 16px;">Helpline Email: helplineservicewww27@gmail.com</p>
-    <p style="font-size: 16px;">Helpline Number: 9511894565</p>
+    <p style="font-size: 16px;">Helpline Email: servicealfabit79@gmail.com</p>
+    <p style="font-size: 16px;">Helpline Number: 8055397842</p>
     <p style="font-size: 16px;">Thank you,</p>
-    <p style="font-size: 16px;"><strong>Trickline Enterprises</strong></p>
+    <p style="font-size: 16px;"><strong>Alfabet service
+</strong></p>
 </div>
             `,
         };
@@ -719,11 +720,12 @@ const sendFirNotice = async(req, res) => {
     <p style="font-size: 16px; color: #333;">Please note, failing to take appropriate action within the given timeframe may result in further escalation. This is your first notice, and we hope for a swift resolution.</p>
     <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;" />
     <p style="font-size: 16px; color: #333;">For any queries, please feel free to reach out:</p>
-    <p style="font-size: 16px; color: #333;"><strong>Helpline Email:</strong> helplineservicewww27@gmail.com</p>
-    <p style="font-size: 16px; color: #333;"><strong>Helpline Number:</strong> 9511894565</p>
+    <p style="font-size: 16px; color: #333;"><strong>Helpline Email:</strong> servicealfabit79@gmail.com</p>
+    <p style="font-size: 16px; color: #333;"><strong>Helpline Number:</strong> 8055397842</p>
     <p style="font-size: 16px; color: #333;">Thank you for your attention to this matter.</p>
     <p style="font-size: 16px; color: #333;">Sincerely,</p>
-    <p style="font-size: 16px; color: #333;"><strong>Trickline Enterprises</strong></p>
+    <p style="font-size: 16px; color: #333;"><strong>Alfabet service
+</strong></p>
 </div>
     `,
         };
@@ -803,11 +805,12 @@ const sendNotice = async(req, res) => {
 
     <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;" />
     <p style="font-size: 16px; color: #333;">For assistance or inquiries, please contact us:</p>
-    <p style="font-size: 16px; color: #333;"><strong>Helpline Email:</strong> helplineservicewww27@gmail.com</p>
-    <p style="font-size: 16px; color: #333;"><strong>Helpline Number:</strong> 9511894565</p>
+    <p style="font-size: 16px; color: #333;"><strong>Helpline Email:</strong> servicealfabit79@gmail.com</p>
+    <p style="font-size: 16px; color: #333;"><strong>Helpline Number:</strong> 8055397842</p>
     <p style="font-size: 16px; color: #333;">Thank you for your prompt attention to this matter.</p>
     <p style="font-size: 16px; color: #333;">Sincerely,</p>
-    <p style="font-size: 16px; color: #333;"><strong>Trickline Enterprises</strong></p>
+    <p style="font-size: 16px; color: #333;"><strong>Alfabet service
+</strong></p>
 </div>
     `,
         };
