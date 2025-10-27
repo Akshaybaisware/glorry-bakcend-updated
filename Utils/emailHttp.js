@@ -9,19 +9,13 @@ function sendViaResend({ from, to, subject, html }) {
 
     // Prefer a verified sender for Resend (e.g., no-reply@yourdomain.com)
     const resendFrom = process.env.RESEND_FROM || from;
-    const replyTo = process.env.RESEND_REPLY_TO || process.env.EMAIL;
 
-    const payload = {
+    const data = JSON.stringify({
       from: resendFrom,
       to,
       subject,
       html
-    };
-    if (replyTo) {
-      payload.reply_to = replyTo;
-    }
-
-    const data = JSON.stringify(payload);
+    });
 
     const options = {
       hostname: 'api.resend.com',
