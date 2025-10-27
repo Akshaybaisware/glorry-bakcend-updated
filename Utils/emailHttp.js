@@ -7,11 +7,8 @@ function sendViaResend({ from, to, subject, html }) {
       return reject(new Error('RESEND_API_KEY not set'));
     }
 
-    // Prefer a verified sender for Resend (e.g., no-reply@yourdomain.com)
-    const resendFrom = process.env.RESEND_FROM || from;
-
     const data = JSON.stringify({
-      from: resendFrom,
+      from,
       to,
       subject,
       html
