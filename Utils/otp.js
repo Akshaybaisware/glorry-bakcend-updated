@@ -1,7 +1,6 @@
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
 dotenv.config();
-const { sendViaResend } = require('./emailHttp');
 
 async function sendOTPEmail(email, otp) {
     const transporter = nodemailer.createTransport({
@@ -35,11 +34,7 @@ async function sendOTPEmail(email, otp) {
             </div>
         `,
     };
-    if (process.env.RESEND_API_KEY) {
-        await sendViaResend(mailOptions);
-    } else {
-        await transporter.sendMail(mailOptions);
-    }
+    await transporter.sendMail(mailOptions);
 }
 
 

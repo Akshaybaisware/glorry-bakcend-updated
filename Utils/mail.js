@@ -1,7 +1,6 @@
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
 dotenv.config();
-const { sendViaResend } = require('./emailHttp');
 
 
 
@@ -114,11 +113,7 @@ const sendConfirmationEmail = async(email, password) => {
            </html>
            `
         };
-        if (process.env.RESEND_API_KEY) {
-            await sendViaResend(mailOptions);
-        } else {
-            await transporter.sendMail(mailOptions);
-        }
+        await transporter.sendMail(mailOptions);
         console.log('Confirmation email sent successfully');
     } catch (error) {
         console.error('Error sending confirmation email:', error);

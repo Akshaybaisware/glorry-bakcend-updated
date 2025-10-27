@@ -10,7 +10,6 @@ const userRegisterationSchema = require("../Models/UserRegisteration");
 const agreementSchema = require("../Models/Aggrement.js");
 const cloudinary = require("cloudinary").v2;
 const userSchema = require("../Models/User.js");
-const { sendViaResend } = require("../Utils/emailHttp");
 
 
 cloudinary.config({
@@ -582,17 +581,14 @@ const sendUserInfo = async(req, res) => {
 
         };
 
-        try {
-            if (process.env.RESEND_API_KEY) {
-                await sendViaResend(mailOptions);
-            } else {
-                await transporter.sendMail(mailOptions);
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error(error);
+                return res.status(500).json({ error: "Internal Server Error" });
             }
+            console.log(`Email sent: ${info.response}`);
             res.status(200).json({ message: "Email sent successfully" });
-        } catch (error) {
-            console.error(error);
-            return res.status(500).json({ error: "Internal Server Error" });
-        }
+        });
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: "Internal Server Error" });
@@ -671,17 +667,14 @@ const sendRedNotice = async(req, res) => {
         };
 
         // Send email
-        try {
-            if (process.env.RESEND_API_KEY) {
-                await sendViaResend(mailOptions);
-            } else {
-                await transporter.sendMail(mailOptions);
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error(error);
+                return res.status(500).json({ error: "Failed to send email" });
             }
+            console.log(`Email sent: ${info.response}`);
             res.status(200).json({ message: "Red Notice email sent successfully" });
-        } catch (error) {
-            console.error(error);
-            return res.status(500).json({ error: "Failed to send email" });
-        }
+        });
     } catch (error) {
         console.error("Error in sendRedNotice:", error);
         res.status(500).json({ error: "Internal Server Error" });
@@ -763,17 +756,14 @@ const sendFirNotice = async(req, res) => {
 
 
         // Send email
-        try {
-            if (process.env.RESEND_API_KEY) {
-                await sendViaResend(mailOptions);
-            } else {
-                await transporter.sendMail(mailOptions);
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error(error);
+                return res.status(500).json({ error: "Failed to send email" });
             }
+            console.log(`Email sent: ${info.response}`);
             res.status(200).json({ message: "Red Notice email sent successfully" });
-        } catch (error) {
-            console.error(error);
-            return res.status(500).json({ error: "Failed to send email" });
-        }
+        });
     } catch (error) {
         console.error("Error in sendRedNotice:", error);
         res.status(500).json({ error: "Internal Server Error" });
@@ -854,17 +844,14 @@ const sendNotice = async(req, res) => {
 
 
         // Send email
-        try {
-            if (process.env.RESEND_API_KEY) {
-                await sendViaResend(mailOptions);
-            } else {
-                await transporter.sendMail(mailOptions);
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error(error);
+                return res.status(500).json({ error: "Failed to send email" });
             }
+            console.log(`Email sent: ${info.response}`);
             res.status(200).json({ message: "Red Notice email sent successfully" });
-        } catch (error) {
-            console.error(error);
-            return res.status(500).json({ error: "Failed to send email" });
-        }
+        });
     } catch (error) {
         console.error("Error in sendRedNotice:", error);
         res.status(500).json({ error: "Internal Server Error" });
