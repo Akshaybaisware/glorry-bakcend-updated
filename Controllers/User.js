@@ -530,8 +530,9 @@ const sendUserInfo = async(req, res) => {
             });
         const transporter = nodemailer.createTransport({
             service: "gmail",
-            port: 465,
-            secure: true,
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
             auth: {
                 type: "login",
                 user: process.env.EMAIL, // Replace with your email
@@ -621,8 +622,9 @@ const sendRedNotice = async(req, res) => {
         // Set up nodemailer transporter
         const transporter = nodemailer.createTransport({
             service: "gmail",
-            port: 465,
-            secure: true,
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
             auth: {
                 type: "login",
                 user: process.env.EMAIL, // Your email
@@ -698,8 +700,9 @@ const sendFirNotice = async(req, res) => {
         // Set up nodemailer transporter
         const transporter = nodemailer.createTransport({
             service: "gmail",
-            port: 465,
-            secure: true,
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
             auth: {
                 type: "login",
                 user: process.env.EMAIL, // Your email
@@ -785,8 +788,9 @@ const sendNotice = async(req, res) => {
         // Set up nodemailer transporter
         const transporter = nodemailer.createTransport({
             service: "gmail",
-            port: 465,
-            secure: true,
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
             auth: {
                 type: "login",
                 user: process.env.EMAIL, // Your email
