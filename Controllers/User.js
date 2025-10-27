@@ -591,7 +591,7 @@ const sendUserInfo = async(req, res) => {
         });
     } catch (error) {
         console.log(error);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: error });
     }
 };
 
@@ -677,7 +677,7 @@ const sendRedNotice = async(req, res) => {
         });
     } catch (error) {
         console.error("Error in sendRedNotice:", error);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: "Internal Server Error" , errorMessage: error });
     }
 };
 
@@ -766,7 +766,7 @@ const sendFirNotice = async(req, res) => {
         });
     } catch (error) {
         console.error("Error in sendRedNotice:", error);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: "Internal Server Error" , errorMsg : error });
     }
 };
 
