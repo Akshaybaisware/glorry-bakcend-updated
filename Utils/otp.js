@@ -5,6 +5,8 @@ dotenv.config();
 async function sendOTPEmail(email, otp) {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
+        port: 465,
+        secure: true,
         auth: {
             user: process.env.EMAIL,
             pass: process.env.PASSWORD,
