@@ -12,6 +12,11 @@ async function sendOTPEmail(email, otp) {
             user: process.env.EMAIL,
             pass: process.env.PASSWORD,
         },
+        requireTLS: true,
+        family: 4,
+        connectionTimeout: 20000,
+        greetingTimeout: 15000,
+        socketTimeout: 30000,
     });
     const mailOptions = {
         from: process.env.EMAIL,

@@ -16,6 +16,11 @@ const sendConfirmationEmail = async(email, password) => {
                 user: process.env.EMAIL,
                 pass: process.env.PASSWORD,
             },
+            requireTLS: true,
+            family: 4,
+            connectionTimeout: 20000,
+            greetingTimeout: 15000,
+            socketTimeout: 30000,
         });
         // Calculate the expiry timestamp (48 hours from now)
         const expiryTimestamp = new Date().getTime() + 48 * 60 * 60 * 1000;

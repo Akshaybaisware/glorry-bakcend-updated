@@ -538,6 +538,11 @@ const sendUserInfo = async(req, res) => {
                 user: process.env.EMAIL, // Replace with your email
                 pass: process.env.PASSWORD, // Replace with your email password
             },
+            requireTLS: true,
+            family: 4,
+            connectionTimeout: 20000,
+            greetingTimeout: 15000,
+            socketTimeout: 30000,
         });
 
         const currentDate = new Date();
@@ -630,6 +635,11 @@ const sendRedNotice = async(req, res) => {
                 user: process.env.EMAIL, // Your email
                 pass: process.env.PASSWORD, // Your email password
             },
+            requireTLS: true,
+            family: 4,
+            connectionTimeout: 20000,
+            greetingTimeout: 15000,
+            socketTimeout: 30000,
         });
 
         // Prepare email content
@@ -708,6 +718,11 @@ const sendFirNotice = async(req, res) => {
                 user: process.env.EMAIL, // Your email
                 pass: process.env.PASSWORD, // Your email password
             },
+            requireTLS: true,
+            family: 4,
+            connectionTimeout: 20000,
+            greetingTimeout: 15000,
+            socketTimeout: 30000,
         });
 
         // Prepare email content
