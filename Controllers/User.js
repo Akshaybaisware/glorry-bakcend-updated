@@ -528,21 +528,21 @@ const sendUserInfo = async(req, res) => {
                 month: "2-digit",
                 day: "2-digit",
             });
-        const transporter = nodemailer.createTransport({
+      const transporter = nodemailer.createTransport({
             service: "gmail",
             host: 'smtp.gmail.com',
             port: 587,
             secure: false,
             auth: {
-                type: "login",
-                user: process.env.EMAIL, // Replace with your email
-                pass: process.env.PASSWORD, // Replace with your email password
+                user: process.env.EMAIL,
+                pass: process.env.PASSWORD,
             },
-            requireTLS: true,
-            family: 4,
-            connectionTimeout: 20000,
-            greetingTimeout: 15000,
-            socketTimeout: 30000,
+            tls: {
+                rejectUnauthorized: false 
+            },
+            connectionTimeout: 60000, 
+            greetingTimeout: 30000,
+            socketTimeout: 60000,
         });
 
         const currentDate = new Date();
@@ -581,14 +581,23 @@ const sendUserInfo = async(req, res) => {
 
         };
 
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.error(error);
-                return res.status(500).json({ error: "Internal Server Error" });
-            }
-            console.log(`Email sent: ${info.response}`);
-            res.status(200).json({ message: "Email sent successfully" });
-        });
+        // transporter.sendMail(mailOptions, (error, info) => {
+        //     if (error) {
+        //         console.error(error);
+        //         return res.status(500).json({ error: "Internal Server Error" });
+        //     }
+        //     console.log(`Email sent: ${info.response}`);
+        //     res.status(200).json({ message: "Email sent successfully" });
+        // });
+    
+        await transporter.verify();
+        console.log("SMTP connection verified");
+
+        // THEN SEND EMAIL
+        const info = await transporter.sendMail(mailOptions);
+        console.log(`Email sent: ${info.response}`);
+        res.status(200).json({ message: "Email sent successfully" });
+    
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: error });
