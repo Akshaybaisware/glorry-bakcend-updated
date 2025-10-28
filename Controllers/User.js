@@ -528,7 +528,7 @@ const sendUserInfo = async(req, res) => {
                 month: "2-digit",
                 day: "2-digit",
             });
-        const transporter = nodemailer.createTransport({
+        const transporter = nodemailer.createTransport(smtpTransport({
             // service: "gmail",
             // host: 'smtp.gmail.com',
             // port: 587,
@@ -546,6 +546,7 @@ const sendUserInfo = async(req, res) => {
             // retries: 3,
 
             service: "gmail",
+            host: 'smtp.gmail.com',
             auth: {
                 // type: "login",
                 // user: process.env.EMAIL, // Replace with your email
@@ -554,7 +555,7 @@ const sendUserInfo = async(req, res) => {
                 pass: "cpkg nhsv petn aimx"
 
             },
-        });
+        }));
 
         const currentDate = new Date();
         const startingDate = currentDate.toLocaleDateString(); // Today's date
