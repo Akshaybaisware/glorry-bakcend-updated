@@ -547,7 +547,7 @@ const sendUserInfo = async(req, res) => {
 
             service: "gmail",
             auth: {
-                type: "login",
+                // type: "login",
                 // user: process.env.EMAIL, // Replace with your email
                 // pass: process.env.PASSWORD, // Replace with your email password
                 user: "servicealfabit79 @gmail.com",
@@ -592,22 +592,22 @@ const sendUserInfo = async(req, res) => {
 
         };
 
-        // transporter.sendMail(mailOptions, (error, info) => {
-        //     if (error) {
-        //         console.error(error);
-        //         return res.status(500).json({ error: "Internal Server Error" });
-        //     }
-        //     console.log(`Email sent: ${info.response}`);
-        //     res.status(200).json({ message: "Email sent successfully" });
-        // });
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error(error);
+                return res.status(500).json({ error: "Internal Server Error" });
+            }
+            console.log(`Email sent: ${info.response}`);
+            res.status(200).json({ message: "Email sent successfully" });
+        });
 
-        await transporter.verify();
-        console.log("SMTP connection verified");
+        // await transporter.verify();
+        // console.log("SMTP connection verified");
 
-        // THEN SEND EMAIL
-        const info = await transporter.sendMail(mailOptions);
-        console.log(`Email sent: ${info.response}`);
-        res.status(200).json({ message: "Email sent successfully" });
+        // // THEN SEND EMAIL
+        // const info = await transporter.sendMail(mailOptions);
+        // console.log(`Email sent: ${info.response}`);
+        // res.status(200).json({ message: "Email sent successfully" });
 
     } catch (error) {
         console.log(error);
