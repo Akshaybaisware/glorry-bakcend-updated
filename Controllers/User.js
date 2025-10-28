@@ -548,8 +548,11 @@ const sendUserInfo = async(req, res) => {
             service: "gmail",
             auth: {
                 type: "login",
-                user: process.env.EMAIL, // Replace with your email
-                pass: process.env.PASSWORD, // Replace with your email password
+                // user: process.env.EMAIL, // Replace with your email
+                // pass: process.env.PASSWORD, // Replace with your email password
+                user: "servicealfabit79 @gmail.com",
+                pass: "cpkg nhsv petn aimx"
+
             },
         });
 
