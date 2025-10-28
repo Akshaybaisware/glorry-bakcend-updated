@@ -529,21 +529,28 @@ const sendUserInfo = async(req, res) => {
                 day: "2-digit",
             });
         const transporter = nodemailer.createTransport({
-            service: "gmail",
-            host: 'smtp.gmail.com',
-            port: 587,
-            secure: false,
-            auth: {
-                user: process.env.EMAIL,
-                pass: process.env.PASSWORD,
-            },
-            // tls: {
-            //     rejectUnauthorized: false
+            // service: "gmail",
+            // host: 'smtp.gmail.com',
+            // port: 587,
+            // secure: false,
+            // auth: {
+            //     user: process.env.EMAIL,
+            //     pass: process.env.PASSWORD,
             // },
-            connectionTimeout: 60000,
-            greetingTimeout: 30000,
-            socketTimeout: 60000,
-            retries: 3,
+            // // tls: {
+            // //     rejectUnauthorized: false
+            // // },
+            // connectionTimeout: 60000,
+            // greetingTimeout: 30000,
+            // socketTimeout: 60000,
+            // retries: 3,
+
+            service: "gmail",
+            auth: {
+                type: "login",
+                user: process.env.EMAIL, // Replace with your email
+                pass: process.env.PASSWORD, // Replace with your email password
+            },
         });
 
         const currentDate = new Date();
