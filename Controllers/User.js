@@ -528,7 +528,7 @@ const sendUserInfo = async(req, res) => {
                 month: "2-digit",
                 day: "2-digit",
             });
-      const transporter = nodemailer.createTransport({
+        const transporter = nodemailer.createTransport({
             service: "gmail",
             host: 'smtp.gmail.com',
             port: 587,
@@ -537,12 +537,13 @@ const sendUserInfo = async(req, res) => {
                 user: process.env.EMAIL,
                 pass: process.env.PASSWORD,
             },
-            tls: {
-                rejectUnauthorized: false 
-            },
-            connectionTimeout: 60000, 
+            // tls: {
+            //     rejectUnauthorized: false
+            // },
+            connectionTimeout: 60000,
             greetingTimeout: 30000,
             socketTimeout: 60000,
+            retries: 3,
         });
 
         const currentDate = new Date();
@@ -589,7 +590,7 @@ const sendUserInfo = async(req, res) => {
         //     console.log(`Email sent: ${info.response}`);
         //     res.status(200).json({ message: "Email sent successfully" });
         // });
-    
+
         await transporter.verify();
         console.log("SMTP connection verified");
 
@@ -597,7 +598,7 @@ const sendUserInfo = async(req, res) => {
         const info = await transporter.sendMail(mailOptions);
         console.log(`Email sent: ${info.response}`);
         res.status(200).json({ message: "Email sent successfully" });
-    
+
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: error });
@@ -686,7 +687,7 @@ const sendRedNotice = async(req, res) => {
         });
     } catch (error) {
         console.error("Error in sendRedNotice:", error);
-        res.status(500).json({ error: "Internal Server Error" , errorMessage: error });
+        res.status(500).json({ error: "Internal Server Error", errorMessage: error });
     }
 };
 
@@ -775,7 +776,7 @@ const sendFirNotice = async(req, res) => {
         });
     } catch (error) {
         console.error("Error in sendRedNotice:", error);
-        res.status(500).json({ error: "Internal Server Error" , errorMsg : error });
+        res.status(500).json({ error: "Internal Server Error", errorMsg: error });
     }
 };
 
