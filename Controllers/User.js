@@ -1,5 +1,7 @@
 const User = require("../Models/User");
 const nodemailer = require("nodemailer");
+const smtpTransport = require('nodemailer-smtp-transport');
+
 const dotenv = require("dotenv");
 require("dotenv").config();
 const sendConfirmationEmail = require("../Utils/mail.js");
