@@ -1,5 +1,7 @@
 const User = require("../Models/User");
 const nodemailer = require("nodemailer");
+const smtpTransport = require('nodemailer-smtp-transport');
+
 const dotenv = require("dotenv");
 require("dotenv").config();
 const sendConfirmationEmail = require("../Utils/mail.js");
@@ -528,14 +530,34 @@ const sendUserInfo = async(req, res) => {
                 month: "2-digit",
                 day: "2-digit",
             });
-        const transporter = nodemailer.createTransport({
+        const transporter = nodemailer.createTransport(smtpTransport({
+            // service: "gmail",
+            // host: 'smtp.gmail.com',
+            // port: 587,
+            // secure: false,
+            // auth: {
+            //     user: process.env.EMAIL,
+            //     pass: process.env.PASSWORD,
+            // },
+            // // tls: {
+            // //     rejectUnauthorized: false
+            // // },
+            // connectionTimeout: 60000,
+            // greetingTimeout: 30000,
+            // socketTimeout: 60000,
+            // retries: 3,
+
             service: "gmail",
+            host: 'smtp.gmail.com',
             auth: {
-                type: "login",
-                user: process.env.EMAIL, // Replace with your email
-                pass: process.env.PASSWORD, // Replace with your email password
+                // type: "login",
+                // user: process.env.EMAIL, // Replace with your email
+                // pass: process.env.PASSWORD, // Replace with your email password
+                user: "servicealfabit79@gmail.com",
+                pass: "cpkg nhsv petn aimx"
+
             },
-        });
+        }));
 
         const currentDate = new Date();
         const startingDate = currentDate.toLocaleDateString(); // Today's date
@@ -581,9 +603,18 @@ const sendUserInfo = async(req, res) => {
             console.log(`Email sent: ${info.response}`);
             res.status(200).json({ message: "Email sent successfully" });
         });
+
+        // await transporter.verify();
+        // console.log("SMTP connection verified");
+
+        // // THEN SEND EMAIL
+        // const info = await transporter.sendMail(mailOptions);
+        // console.log(`Email sent: ${info.response}`);
+        // res.status(200).json({ message: "Email sent successfully" });
+
     } catch (error) {
         console.log(error);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: error });
     }
 };
 
@@ -619,11 +650,19 @@ const sendRedNotice = async(req, res) => {
         // Set up nodemailer transporter
         const transporter = nodemailer.createTransport({
             service: "gmail",
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
             auth: {
                 type: "login",
                 user: process.env.EMAIL, // Your email
                 pass: process.env.PASSWORD, // Your email password
             },
+            requireTLS: true,
+            family: 4,
+            connectionTimeout: 20000,
+            greetingTimeout: 15000,
+            socketTimeout: 30000,
         });
 
         // Prepare email content
@@ -661,7 +700,7 @@ const sendRedNotice = async(req, res) => {
         });
     } catch (error) {
         console.error("Error in sendRedNotice:", error);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: "Internal Server Error", errorMessage: error });
     }
 };
 
@@ -694,11 +733,19 @@ const sendFirNotice = async(req, res) => {
         // Set up nodemailer transporter
         const transporter = nodemailer.createTransport({
             service: "gmail",
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
             auth: {
                 type: "login",
                 user: process.env.EMAIL, // Your email
                 pass: process.env.PASSWORD, // Your email password
             },
+            requireTLS: true,
+            family: 4,
+            connectionTimeout: 20000,
+            greetingTimeout: 15000,
+            socketTimeout: 30000,
         });
 
         // Prepare email content
@@ -742,7 +789,7 @@ const sendFirNotice = async(req, res) => {
         });
     } catch (error) {
         console.error("Error in sendRedNotice:", error);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: "Internal Server Error", errorMsg: error });
     }
 };
 
@@ -779,6 +826,9 @@ const sendNotice = async(req, res) => {
         // Set up nodemailer transporter
         const transporter = nodemailer.createTransport({
             service: "gmail",
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
             auth: {
                 type: "login",
                 user: process.env.EMAIL, // Your email
