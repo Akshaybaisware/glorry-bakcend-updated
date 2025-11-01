@@ -551,10 +551,10 @@ const sendUserInfo = async(req, res) => {
             host: 'smtp.gmail.com',
             auth: {
                 // type: "login",
-                // user: process.env.EMAIL, // Replace with your email
-                // pass: process.env.PASSWORD, // Replace with your email password
-                user: "servicealfabit79@gmail.com",
-                pass: "cpkg nhsv petn aimx"
+                user: process.env.EMAIL, // Replace with your email
+                pass: process.env.PASSWORD, // Replace with your email password
+                // user: "servicealfabit79@gmail.com",
+                // pass: "cpkg nhsv petn aimx"
 
             },
         }));
