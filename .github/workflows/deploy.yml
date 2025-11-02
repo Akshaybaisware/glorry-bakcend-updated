@@ -17,17 +17,19 @@ jobs:
         uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
+          username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
           script: |
             echo "🔹 Pulling latest code..."
-            cd ${{ secrets.EC2_PATH }}
+            cd ~/glorry-bakcend-updated
             git pull origin main
 
             echo "🔹 Installing dependencies..."
             npm install --production
 
             echo "🔹 Restarting app with PM2..."
-            pm2 restart index.js --name backend || pm2 start index.js --name backend
+            pm2 restart backend || pm2 start index.js --name backend
             pm2 save
+
             echo "✅ Deployment successful!"
