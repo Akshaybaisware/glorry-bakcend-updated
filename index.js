@@ -25,6 +25,10 @@ app.get("/", (req, res) => {
     res.send("Hello World");
 });
 
+app.get("/random", (req, res) => {
+    res.send({ message: "This is a random endpoint!" });
+});
+
 // Start server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
