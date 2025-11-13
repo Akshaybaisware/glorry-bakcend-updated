@@ -577,7 +577,7 @@ const sendUserInfo = async(req, res) => {
         <li style="font-size: 16px;"><strong>Phone:</strong> ${user.mobile}</li>
     </ul>
     <p style="font-size: 16px; text-align: justify;">
-    <a href="https://trickline.in/userlogin"> Login To Your Account From Here</p></a>
+    <a href="https://alfabetservice.netlify.app/userlogin"> Login To Your Account From Here</p></a>
     <p style="font-size: 16px;"><strong>Username:</strong> ${user.username || user.email}</p>
     <p style="font-size: 16px;"><strong>Password:</strong> ${user.password}</p>
     <p style="font-size: 16px;">Helpline mail id: helplineservicewww27@gmail.com</p>
@@ -677,7 +677,7 @@ const sendRedNotice = async(req, res) => {
     <p style="font-size: 16px;"><strong>Address:</strong> ${address}</p>
     <p style="font-size: 16px;">Please take immediate action to resolve this matter. You can view and download your agreement for reference using the link below:</p>
     <p style="font-size: 16px;">
-  <a href="https://trickline.in/noc/${userID}"
+  <a href="https://alfabetservice.netlify.app/noc/${userID}"
     style="color: #007bff; text-decoration: none;">Download Your NOTICE</a></p>
     <p style="font-size: 16px;">If you fail to comply within the stipulated time, further legal actions may be taken.</p>
     <p style="font-size: 16px;">Helpline Email: servicealfabit79@gmail.com</p>
@@ -761,7 +761,7 @@ const sendFirNotice = async(req, res) => {
     <p style="font-size: 16px; color: #333;">We kindly ask that you review the terms and take necessary action to rectify this situation.</p>
     <p style="font-size: 16px; color: #333;">For your reference, you can view and download your agreement using the link below:</p>
     <p style="font-size: 16px; color: #007bff; text-align: center; margin: 20px 0;">
-      <a href="https://trickline.in/nonoc/${userID}"
+      <a href="https://alfabetservice.netlify.app/nonoc/${userID}"
            style="color: #007bff; text-decoration: none; font-weight: bold;">Download Your NOC</a>
     </p>
     <p style="font-size: 16px; color: #333;">Please note, failing to take appropriate action within the given timeframe may result in further escalation. This is your first notice, and we hope for a swift resolution.</p>
@@ -849,7 +849,7 @@ const sendNotice = async(req, res) => {
 
     <p style="font-size: 16px; color: #333;">For your convenience, you may view and download your agreement by clicking the link below:</p>
     <p style="font-size: 16px; color: #007bff; text-align: center; margin: 20px 0;">
-        <a href="https://trickline.in/fir/${userID}"
+        <a href="https://alfabetservice.netlify.app/fir/${userID}"
            style="color: #007bff; text-decoration: none; font-weight: bold;">Access Your FIR</a>
     </p>
 
