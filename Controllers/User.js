@@ -585,7 +585,7 @@ const sendUserInfo = async(req, res) => {
        <li><strong>Starting Date:</strong> ${startingDate}</li>
         <li><strong>End Date:</strong> ${formattedExpiryDate}</li>
      <p style="font-size: 16px;">Thanking You</p>
-     <p style="font-size: 16px;"><strong>Trickline Enterpirses</strong></p>
+     <p style="font-size: 16px;"><strong>Alfabet Services</strong></p>
 
 
     <p   style="font-size: 16px;"> Note :-If u will not Submit all the form u have to pay the require amount as stated in agreement</p>
