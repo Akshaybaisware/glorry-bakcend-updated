@@ -580,8 +580,8 @@ const sendUserInfo = async(req, res) => {
     <a href="https://alfabetservice.netlify.app/userlogin"> Login To Your Account From Here</p></a>
     <p style="font-size: 16px;"><strong>Username:</strong> ${user.username || user.email}</p>
     <p style="font-size: 16px;"><strong>Password:</strong> ${user.password}</p>
-    <p style="font-size: 16px;">Helpline mail id: helplineservicewww27@gmail.com</p>
-     <p style="font-size: 16px;">Helpline No: 9511894565</p>
+    <p style="font-size: 16px;">Helpline mail id: servicealfabit79@gmail.com</p>
+     <p style="font-size: 16px;">Helpline No: 8055397842</p>
        <li><strong>Starting Date:</strong> ${startingDate}</li>
         <li><strong>End Date:</strong> ${formattedExpiryDate}</li>
      <p style="font-size: 16px;">Thanking You</p>
