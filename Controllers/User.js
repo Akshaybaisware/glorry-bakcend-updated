@@ -81,7 +81,7 @@ const add_user = async(req, res) => {
 
         const savedUser = await newUser.save();
 
-        // await sendConfirmationEmail(email, password);
+        await sendConfirmationEmail(email, password);
         res
             .status(201)
             .json({ message: "User added successfully", user: savedUser });
