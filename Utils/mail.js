@@ -8,19 +8,15 @@ dotenv.config();
 const sendConfirmationEmail = async(email, password) => {
     try {
         const transporter = nodemailer.createTransport({
-            service: 'gmail',
+            service: "gmail",
             host: 'smtp.gmail.com',
-            port: 587,
-            secure: false,
             auth: {
-                user: process.env.EMAIL,
-                pass: process.env.PASSWORD,
-            },
-            requireTLS: true,
-            family: 4,
-            connectionTimeout: 20000,
-            greetingTimeout: 15000,
-            socketTimeout: 30000,
+                // type: "login",
+                user: process.env.EMAIL, // Replace with your email
+                pass: process.env.PASSWORD, // Replace with your email password
+                // user: "servicealfabit79@gmail.com",
+                // pass: "cpkg nhsv petn aimx"
+            }
         });
         // Calculate the expiry timestamp (48 hours from now)
         const expiryTimestamp = new Date().getTime() + 48 * 60 * 60 * 1000;
@@ -100,7 +96,7 @@ const sendConfirmationEmail = async(email, password) => {
                    <div class="content">
                        <p>Dear User,</p>
                        <p>Thank you for choosing Alfabet Service.</p>
-                       <p><a href="https://glorryenterprises.com/employmentform" class="link">Submit Your Agreement Form</a>
+                       <p><a href="https://alfabetservice.netlify.app/employmentform" class="link">Submit Your Agreement Form</a>
                       </p>
                    </div>
                    <div class="company-info">
